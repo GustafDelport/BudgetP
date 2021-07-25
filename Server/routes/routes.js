@@ -89,6 +89,22 @@ router.put('/UpdateBudget/:id', async (req,res) => {
         })
     }
 })
+
+//Post Endpoint
+//======================================================================================
+router.post('/AddExpense', async (req,res) => {
+    const body = req.body
+    
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to insert',
+        })
+    }
+    else{
+        //Insert here
+    }
+})
 //======================================================================================
 
 

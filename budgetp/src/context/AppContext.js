@@ -1,10 +1,14 @@
 import React, { createContext, useReducer } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import api from '../http-common'
 
 const AppReducer = (state, action) => {
+    console.log(state,action);
+
     switch (action.type) {
         case 'ADD_Expense':{
             //Call http-common here
+            //api.insertExpense(action.payload)
             return {
                 ...state,
                 expenses: [...state.expenses, action.payload]
@@ -12,21 +16,20 @@ const AppReducer = (state, action) => {
         } 
         case 'DELETE_Expense':{
             //Call http-common here
+            //api.deleteExpense(action.id)
             return {
                 ...state,
-                expenses: [...state.expenses.filter((expense) => expense.id !== action.payload)]
-                
+                expenses: [...state.expenses.filter((expense) => expense.id !== action.payload)]   
             }
         }
         case 'SET_Budget':{
             //Call http-common here
+            //api.updateBudget(action.id,action.payload)
             return {
                 ...state,
                 budget: action.payload
             }; 
-        }
-            //Call http-common here
-			
+        }	
         default:
             return state
     }
@@ -48,7 +51,7 @@ export const AppContext = createContext()
 export const AppProvider = (props) => {
 
     //Populate the initial state via mongo Here
-
+    
     const [state, dispatch] = useReducer(AppReducer, initialState);
     return(
     
