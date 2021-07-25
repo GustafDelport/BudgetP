@@ -4,22 +4,29 @@ import { v4 as uuidv4 } from 'uuid';
 const AppReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_Expense':{
+            //Call http-common here
             return {
                 ...state,
                 expenses: [...state.expenses, action.payload]
             }
         } 
         case 'DELETE_Expense':{
+            //Call http-common here
             return {
                 ...state,
                 expenses: [...state.expenses.filter((expense) => expense.id !== action.payload)]
+                
             }
         }
-        case 'SET_Budget':
-			return {
-				...state,
-				budget: action.payload,
-			}; 
+        case 'SET_Budget':{
+            //Call http-common here
+            return {
+                ...state,
+                budget: action.payload
+            }; 
+        }
+            //Call http-common here
+			
         default:
             return state
     }
@@ -39,6 +46,9 @@ const initialState = {
 export const AppContext = createContext()
 
 export const AppProvider = (props) => {
+
+    //Populate the initial state via mongo Here
+
     const [state, dispatch] = useReducer(AppReducer, initialState);
     return(
     
