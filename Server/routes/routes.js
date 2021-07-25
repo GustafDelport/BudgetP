@@ -5,6 +5,8 @@ const BudgetData = require('../models/budget')
 
 const router = express.Router()
 
+//Get Endpoints
+//======================================================================================
 router.get('/expensesAll',async (req,res) => {
 
     try {
@@ -27,6 +29,8 @@ router.get('/budgetAll',async (req,res) => {
     }
 })
 
+//Delete Endpoint
+//======================================================================================
 router.delete('/DeleteExpense/:id', async (req,res) => {
     try {
         await ExpenseData.findOneAndDelete({id: req.params.id}, (err,expense) => {
@@ -48,6 +52,8 @@ router.delete('/DeleteExpense/:id', async (req,res) => {
     }
 })
 
+//Put Endpoint
+//======================================================================================
 router.put('/UpdateBudget/:id', async (req,res) => {
     const body = req.body
     
@@ -83,5 +89,7 @@ router.put('/UpdateBudget/:id', async (req,res) => {
         })
     }
 })
+//======================================================================================
+
 
 module.exports = router
