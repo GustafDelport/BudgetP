@@ -1,0 +1,12 @@
+POST http://localhost:3000/UpdateBudget?_id=60fd97b8f0a8cdae5bd86b0c
+
+Content-Type: application/json
+{
+    "id":"237415b8-ee61-4cdc-97af-18a971062f88",
+    "budget": 20000
+}
+
+###
+GET http://localhost:3000/expensesAll
+###
+GET http://localhost:3000/budgetAll
