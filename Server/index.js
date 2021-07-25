@@ -4,7 +4,6 @@ const express = require('express')
 const cors = require('cors');
 const app = express()
 
-//ORIGIN = http://gus.inventixx.com:6580
 const corsOptions = {
     origin: process.env.ORIGIN || "http://localhost:5000"
 };
