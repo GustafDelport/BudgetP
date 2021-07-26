@@ -11,10 +11,17 @@ const Budget = () => {
 		setIsEditing(true);
 	};
 
+	
+
     const handleSaveClick = (value) => {
+		const nwBudget = {
+			id: 1,
+			budget: value
+		}
+
 		dispatch({
 			type: 'SET_Budget',
-			payload: value,
+			payload: nwBudget,
 		});
 		setIsEditing(false);
 	};
@@ -22,10 +29,9 @@ const Budget = () => {
     return(
         <div class='alert alert-secondary p-3 d-flex align-items-center justify-content-between'>
 			{isEditing ? (
-				<EditBudget handleSaveClick={handleSaveClick} budget={budget} />
+				<EditBudget handleSaveClick={handleSaveClick} budget={budget.budget} />
 			) : (
-				// For part 1 render component inline rather than create a seperate one
-				<ViewBudget handleEditClick={handleEditClick} budget={budget} />
+				<ViewBudget handleEditClick={handleEditClick} budget={budget.budget} />
 			)}
 		</div>
     )

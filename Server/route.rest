@@ -1,4 +1,4 @@
-PUT  http://localhost:3000/UpdateBudget/60fd97b8f0a8cdae5bd86b0c
+PUT  http://localhost:3000/UpdateBudget/1
 Content-Type: application/json
 
 {

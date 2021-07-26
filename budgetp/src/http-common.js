@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'http://localhost:3000',
     headers: {
         "Content-type" : "application/json"
     }
@@ -10,7 +10,7 @@ const api = axios.create({
 export const insertExpense = payload => api.post(`/AddExpense`, payload)
 export const getAllExpenses = () => api.get(`/expensesAll`)
 export const getBudget = () => api.get(`/budgetAll`)
-export const updateBudget = (id, payload) => api.put(`/UpdateBudget/${id}`, payload)
+export const updateBudget = (id, payload) => api.put(`/UpdateBudget/${id}`, {budget: payload})
 export const deleteExpense = id => api.delete(`/DeleteExpense/${id}`)
 
 const apis = {

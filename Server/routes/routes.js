@@ -63,8 +63,8 @@ router.put('/UpdateBudget/:id', async (req,res) => {
             error: 'You must provide a body to update',
         })
     }
-    else{
-        BudgetData.findOne({_id: req.params.id},(err,budget) => {
+    else{        
+        BudgetData.findOne({id: req.params.id},(err,budget) => {
             if(err) {
                 return res.status(404).json({
                     err,
@@ -82,7 +82,7 @@ router.put('/UpdateBudget/:id', async (req,res) => {
             })
             .catch( err => {
                 return res.status(404).json({
-                    error,
+                    err,
                     message: 'Budget not updated!',
                 })
             })
