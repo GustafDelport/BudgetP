@@ -1,0 +1,6 @@
+.env files in each directory [Server and BudgetP]
+
+Server: .env => DATABASE_URL = BudpetP database
+		ORIGIN = "Localhost:5000
+
+BudgetP: .env => PORT = 5000
