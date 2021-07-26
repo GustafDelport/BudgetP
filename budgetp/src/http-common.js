@@ -7,7 +7,7 @@ const api = axios.create({
     }
 })
 
-export const insertExpense = payload => api.post(`/AddExpense`, payload)
+export const insertExpense = payload => api.post(`/AddExpense`, {payload})
 export const getAllExpenses = () => api.get(`/expensesAll`)
 export const getBudget = () => api.get(`/budgetAll`)
 export const updateBudget = (id, payload) => api.put(`/UpdateBudget/${id}`, {budget: payload})

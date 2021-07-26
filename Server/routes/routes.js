@@ -93,8 +93,9 @@ router.put('/UpdateBudget/:id', async (req,res) => {
 //Post Endpoint
 //======================================================================================
 router.post('/AddExpense', async (req,res) => {
-    const body = req.body
     
+    const body = req.body
+
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -102,7 +103,22 @@ router.post('/AddExpense', async (req,res) => {
         })
     }
     else{
-        //Insert here
+        try {
+            const nwExpense = new ExpenseData({
+                id: body.payload.id,
+                name: body.payload.name,
+                cost: body.payload.cost
+            })
+
+            const newData = nwExpense.save()
+            res.status(201).json({
+                success : true,
+                data: newData   
+            })
+
+        } catch (error) {
+            res.status(400).json({ message: error.message})
+        }
     }
 })
 //======================================================================================
