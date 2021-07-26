@@ -38,11 +38,29 @@ const AppReducer = (state, action) => {
 
 export const AppContext = createContext()
 
+function PopulateInitial() {
+        return new Promise((resolve, reject) => {
+            api.getAllExpenses()
+            .then(res => resolve(res.data))
+            .catch(err => reject(err))
+        }
+    )
+}
+
 export const AppProvider = (props) => {
 
     //Populate the initial state via mongo Here
 
-    
+    PopulateInitial().then((data) => {
+        const nwData = {
+            data: data
+        }
+
+        // for (let index = 0; index < nwData.data.length; index++) {
+        //         console.log(nwData.data[index]);
+        //         initialState.expenses.push[nwData.data[index]]
+        // }
+    })
 
     const initialState = {
 	
@@ -51,11 +69,7 @@ export const AppProvider = (props) => {
             budget: 2000
         },
         expenses: [
-            { id: uuidv4(), name: 'Shopping', cost: 50 },
-            { id: uuidv4(), name: 'Holiday', cost: 300 },
-            { id: uuidv4(), name: 'Transportation', cost: 70 },
-            { id: uuidv4(), name: 'Fuel', cost: 40 },
-            { id: uuidv4(), name: 'Child Care', cost: 500 },
+            { id: uuidv4(), name: 'Test', cost: 50 },
         ],
     };
 
