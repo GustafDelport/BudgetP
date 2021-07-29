@@ -52,17 +52,13 @@ export const AppProvider = (props) => {
     //Populate the initial state via mongo Here
 
     PopulateInitial().then((data) => {
-        const nwData = {
-            data: data
-        }
-
         // for (let index = 0; index < nwData.data.length; index++) {
         //         console.log(nwData.data[index]);
         //         initialState.expenses.push[nwData.data[index]]
         // }
     })
 
-    const initialState = {
+    let initialState = {
 	
         budgetInfo:{
             id: 1,
