@@ -6,18 +6,18 @@ import { AppContext } from '../context/AppContext';
 const Budget = () => {
     const {budget, dispatch} = useContext(AppContext)
     const [isEditing, setIsEditing] = useState(false);
+	
 
     const handleEditClick = () => {
 		setIsEditing(true);
 	};
-
-	
 
     const handleSaveClick = (value) => {
 		const nwBudget = {
 			id: 1,
 			budget: value
 		}
+
 
 		dispatch({
 			type: 'SET_Budget',

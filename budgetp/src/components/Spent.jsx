@@ -7,6 +7,7 @@ const Spent = () => {
     const totalSpent= expenses.reduce((total, item) => {
         return (total += item.cost)
     },0)
+    
 
     return(
         <div className='alert alert-primary p-4'>

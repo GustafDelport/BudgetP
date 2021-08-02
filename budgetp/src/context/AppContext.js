@@ -60,30 +60,34 @@ export const AppProvider = (props) => {
     //Populate the initial state via mongo Here
 
     let initialState = {
-	
-        budgetInfo:{
-            id: 1,
-            budget: 2000
-        },
-        expenses: [
-        ],
+        budgetInfo: popB(),
+        expenses: popE(),
     };
 
-    PopulateInitial().then((data) => {
+    function popE() {
+        let ex = []
+            PopulateInitial().then((data) => {
+                data.forEach(element => {
+                    ex.push(element)
+                });
+            })
+        return ex
+    }
 
-        data.forEach(element => {
-            initialState.expenses.push(element)
-        });
-    })
-
-    PopulateInitialBudget().then((data) => {
-        initialState.budgetInfo.id = data[0].id
-        initialState.budgetInfo.budget = data[0].budget
-
-    })
+    function popB() {
+        let B = {
+            id: 1,
+            budget:0
+        }
+        PopulateInitialBudget().then((data) => {
+            B.id = data[0].id
+            B.budget = data[0].budget
+        })
+        return B
+    }
     
     const [state, dispatch] = useReducer(AppReducer, initialState);
-    
+
     return(
     <AppContext.Provider 
         value={{
