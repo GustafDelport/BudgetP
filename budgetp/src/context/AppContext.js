@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from "react";
-import { v4 as uuidv4 } from 'uuid';
 import api from '../http-common'
 
 const AppReducer = (state, action) => {
@@ -47,35 +46,48 @@ function PopulateInitial() {
     )
 }
 
+function PopulateInitialBudget() {
+    return new Promise((resolve, reject) => {
+        api.getBudget()
+        .then(res => resolve(res.data))
+        .catch(err => reject(err))
+    }
+)
+}
+
 export const AppProvider = (props) => {
 
     //Populate the initial state via mongo Here
 
-    PopulateInitial().then((data) => {
-        const nwData = {
-            data: data
-        }
-
-        // for (let index = 0; index < nwData.data.length; index++) {
-        //         console.log(nwData.data[index]);
-        //         initialState.expenses.push[nwData.data[index]]
-        // }
-    })
-
-    const initialState = {
-	
-        budgetInfo:{
-            id: 1,
-            budget: 2000
-        },
-        expenses: [
-            { id: uuidv4(), name: 'Test', cost: 50 },
-        ],
+    let initialState = {
+        budgetInfo: popB(),
+        expenses: popE(),
     };
 
-    //console.log(initialState);
+    function popE() {
+        let ex = []
+            PopulateInitial().then((data) => {
+                data.forEach(element => {
+                    ex.push(element)
+                });
+            })
+        return ex
+    }
+
+    function popB() {
+        let B = {
+            id: 1,
+            budget:0
+        }
+        PopulateInitialBudget().then((data) => {
+            B.id = data[0].id
+            B.budget = data[0].budget
+        })
+        return B
+    }
     
     const [state, dispatch] = useReducer(AppReducer, initialState);
+
     return(
     <AppContext.Provider 
         value={{

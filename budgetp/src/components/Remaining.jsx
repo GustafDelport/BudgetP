@@ -7,6 +7,7 @@ const Remaining = () => {
     const totalExpenses = expenses.reduce((total, item) => {
         return (total += item.cost)
     },0)
+    
 
     const alertType = totalExpenses > budget.budget ? 'alert-danger' : 'alert-success';
 
