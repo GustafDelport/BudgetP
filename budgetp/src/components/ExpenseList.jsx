@@ -1,4 +1,4 @@
-import React,{useContext, useState , useEffect} from 'react';
+import React,{useContext, useState , useEffect, Component} from 'react';
 import { AppContext } from '../context/AppContext';
 import ExpenseItem from './ExpenseItem';
 
@@ -17,7 +17,7 @@ const ExpenseList = () => {
 		);
 		setfilteredExpenses(searchResults);
 	};
-    
+
     return(
         <>
 			<input
