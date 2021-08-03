@@ -63,7 +63,7 @@ export const AppProvider = (props) => {
         budgetInfo: popB(),
         expenses: popE(),
     };
-
+    
     function popE() {
         let ex = []
             PopulateInitial().then((data) => {
