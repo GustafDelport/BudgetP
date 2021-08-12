@@ -59,10 +59,20 @@ export const AppProvider = (props) => {
 
     //Populate the initial state via mongo Here
 
-    let initialState = {
-        budgetInfo: popB(),
-        expenses: popE(),
-    };
+    function popIni() {
+        let initialState  = {
+            budgetInfo: popB(),
+            expenses: popE(),
+        };
+
+        return initialState;
+    }
+
+    // let initialState  = {
+    //     budgetInfo: popB(),
+    //     expenses: popE(),
+    // };
+    
     
     function popE() {
         let ex = []
@@ -86,7 +96,7 @@ export const AppProvider = (props) => {
         return B
     }
     
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [state, dispatch] = useReducer(AppReducer, popIni());
 
     return(
     <AppContext.Provider 
