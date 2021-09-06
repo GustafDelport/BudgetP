@@ -2,11 +2,11 @@ PUT  http://localhost:3000/UpdateBudget/1
 Content-Type: application/json
 
 {
-    "budget":2500
+    "budget":21073
 }
 ###
 GET http://localhost:3000/expensesAll
 ###
 GET http://localhost:3000/budgetAll
 ###
-DELETE  http://localhost:3000/DeleteExpense/237415b8-5641-4cdc-97af-dsfsdf418a971062f88
+DELETE  http://localhost:3000/DeleteExpense/06022a3b-401b-4f7d-94b6-0bd7092decde
