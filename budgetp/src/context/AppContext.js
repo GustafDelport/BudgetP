@@ -6,7 +6,6 @@ const AppReducer = (state, action) => {
 
     switch (action.type) {
         case 'ADD_Expense':{
-            //Call http-common here
             api.insertExpense(action.payload)
             return {
                 ...state,
@@ -14,7 +13,6 @@ const AppReducer = (state, action) => {
             }
         } 
         case 'DELETE_Expense':{
-            //Call http-common here
             api.deleteExpense(action.payload)
             return {
                 ...state,
@@ -22,7 +20,6 @@ const AppReducer = (state, action) => {
             }
         }
         case 'SET_Budget':{
-            //Call http-common here
             api.updateBudget(action.payload.id,action.payload.budget)
 
             return {
@@ -55,46 +52,42 @@ function PopulateInitialBudget() {
 )
 }
 
+function popIni() {
+    let initialState  = {
+        budgetInfo: popB(),
+        expenses: popE(),
+    };
+
+    return initialState;
+}
+
+function popE() {
+    let ex = []
+        PopulateInitial().then((data) => {
+            data.forEach(element => {
+                ex.push(element)
+            });
+        })
+    return ex
+}
+
+function popB() {
+    let B = {
+        id: 1,
+        budget:0
+    }
+    PopulateInitialBudget().then((data) => {
+        B.id = data[0].id
+        B.budget = data[0].budget
+    })
+    return B
+}
+
 export const AppProvider = (props) => {
 
     //Populate the initial state via mongo Here
 
-    function popIni() {
-        let initialState  = {
-            budgetInfo: popB(),
-            expenses: popE(),
-        };
 
-        return initialState;
-    }
-
-    // let initialState  = {
-    //     budgetInfo: popB(),
-    //     expenses: popE(),
-    // };
-    
-    
-    function popE() {
-        let ex = []
-            PopulateInitial().then((data) => {
-                data.forEach(element => {
-                    ex.push(element)
-                });
-            })
-        return ex
-    }
-
-    function popB() {
-        let B = {
-            id: 1,
-            budget:0
-        }
-        PopulateInitialBudget().then((data) => {
-            B.id = data[0].id
-            B.budget = data[0].budget
-        })
-        return B
-    }
     
     const [state, dispatch] = useReducer(AppReducer, popIni());
 
